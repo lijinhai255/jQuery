@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 500px;
+			padding: 5px;
+			overflow: hidden;
+			border: 1px solid #000;
+			margin-bottom: 10px;
+		}
+		p {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body id="body">
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 要求：
+	// 点击哪个p让哪个p元素的背景色改变为红色
+	// 让p元素的兄弟节点背景色改变为黄色
+	// 让父节点背景色改变为绿色
+	// 让父节点的兄弟节点背景色改为橙色  
+
+
+	// 分条书写
+	// $("p").click(function() {
+	// 	$(this).css("background-color", "red");
+	// 	$(this).siblings().css("background-color", "yellow");
+	// 	$(this).parent().css("background-color", "green");
+	// 	$(this).parent().siblings().css("background-color", "orange");
+	// })
+
+
+	// 连续打点
+	$("p").click(function() {
+		$(this).css("background-color", "red")
+		.siblings().css("background-color", "yellow")
+		.parent().css("background-color", "green")
+		.siblings().css("background-color", "orange");
+	})
+	</script>
+</body>
+</html>

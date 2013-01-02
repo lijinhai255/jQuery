@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			top: 50px;
+			left: 50px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">stop(false, false)</button>
+	<button id="btn1">stop(false, true)</button>
+	<button id="btn2">stop(true, true)</button>
+	<button id="btn3">stop(true, false)</button>
+	<div class="box"></div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 添加动画
+	$(".box").animate({"left": 500}, 2000);
+	$(".box").animate({"top": 500}, 2000);
+	$(".box").animate({"left": 50}, 2000);
+	$(".box").animate({"top": 50}, 2000);
+
+	// 添加事件
+	// stop(false, false)
+	$("#btn").click(function() {
+		$(".box").stop();
+	})
+
+
+	// stop(false, true)
+	$("#btn1").click(function() {
+		$(".box").stop(false, true);
+	})
+
+
+	// stop(true, true)
+	$("#btn2").click(function() {
+		$(".box").stop(true, true);
+	})
+
+	// stop(true, false)
+	$("#btn3").click(function() {
+		$(".box").stop(true);
+	})
+	</script>
+</body>
+</html>

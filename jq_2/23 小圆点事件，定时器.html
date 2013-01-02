@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul, ol {
+			list-style: none;
+		}
+		.carousel {
+			position: relative;
+			width: 900px;
+			height: 540px;
+			margin: 50px auto;
+			border: 1px solid #000;
+		}
+		/* 呼吸轮播图的布局关键: 所有的图片落在一起 */
+		.carousel ul li {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			display: none;
+		}
+		.carousel ul li:first-child {
+			display: block;
+		}
+		.carousel .btns a {
+			position: absolute;
+			width: 30px;
+			height: 60px;
+			top: 50%;
+			margin-top: -30px;
+			color: #fff;
+			font-size: 20px;
+			line-height: 60px;
+			text-align: center;
+			background-color: rgba(0, 0, 0, .5);
+			text-decoration: none;
+		}
+		.carousel .btns a:first-child {
+			left: 10px;
+		}
+		.carousel .btns a:last-child {
+			right: 10px;
+		}
+		.carousel .circles {
+			position: absolute;
+			width: 200px;
+			height: 20px;
+			left: 50%;
+			margin-left: -100px;
+			bottom: 30px;
+		}
+		.carousel .circles ol {
+			width: 210px;
+		}
+		.carousel .circles ol li {
+			float: left;
+			width: 20px;
+			height: 20px;
+			margin-right: 10px;
+			background-color: orange;
+			border-radius: 20px;
+			line-height: 20px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.carousel .circles ol li.cur {
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<div class="imgs" id="imgs">
+			<ul>
+				<li><img src="images/aoyun/0.jpg" alt=""></li>
+				<li><img src="images/aoyun/1.jpg" alt=""></li>
+				<li><img src="images/aoyun/2.jpg" alt=""></li>
+				<li><img src="images/aoyun/3.jpg" alt=""></li>
+				<li><img src="images/aoyun/4.jpg" alt=""></li>
+				<li><img src="images/aoyun/5.jpg" alt=""></li>
+				<li><img src="images/aoyun/6.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div class="btns">
+			<a href="#" id="leftBtn">&lt;</a>
+			<a href="#" id="rightBtn">&gt;</a>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+			</ol>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var $leftBtn = $("#leftBtn");
+	var $rightBtn = $("#rightBtn");
+	var $imgs = $("#imgs ul li");
+	var $circles = $("#circles ol li");
+	var $carousel = $("#carousel");
+	var length = $imgs.length;
+
+	// 定义信号量
+	var idx = 0;
+
+	// 开启定时器
+	var timer = setInterval(change, 3000);
+
+	// 当鼠标进入图片的时候， 停止定时器
+	$carousel.mouseenter(function() {
+		// 清除定时器
+		clearInterval(timer);
+	})
+
+
+	// 当鼠标离开图片的时候， 重新开启定时器
+	$carousel.mouseleave(function() {
+		// 设表先关
+		clearInterval(timer);
+		// 重新赋值timer
+		timer = setInterval(change, 3000);
+	})
+
+
+
+	// 右按钮点击事件
+	$rightBtn.click(change);
+
+	function change() {
+		// 防流氓
+		if ($imgs.is(":animated")) {
+			return;
+		}
+
+		// 当前图片消失
+		$imgs.eq(idx).fadeOut(600);
+
+		// 信号量改变
+		idx++;
+		// 边界判断
+		if (idx > length - 1) {
+			// 让idx 为 0 
+			idx = 0;
+		}
+		console.log(idx);
+
+		// 下一张图片淡入
+		$imgs.eq(idx).fadeIn(600);
+
+		// 当前小圆点加cur
+		$circles.eq(idx).addClass("cur").siblings().removeClass("cur");
+	}
+
+
+	// 左按钮点击事件
+	$leftBtn.click(function() {
+		// 防流氓
+		if (!$imgs.is(":animated")) {
+			// 当前图片淡出
+			$imgs.eq(idx).fadeOut(600);
+			// 信号量改变
+			idx--;
+			// 边界判断
+			if (idx < 0) {
+				idx = length - 1;
+			}
+			// 下一张图片淡入
+			$imgs.eq(idx).fadeIn(600);
+
+			// 当前小圆点加cur
+			$circles.eq(idx).addClass("cur").siblings().removeClass("cur");
+		}
+	})
+
+
+	// 小圆点事件
+	$circles.mouseenter(function() {
+		// 当前图片消失
+		$imgs.eq(idx).stop(true).fadeOut(600);
+
+		// 信号量改变
+		idx = $(this).index();
+		console.log(idx);
+
+		// 下一张图片进入
+		$imgs.eq(idx).stop(true).fadeIn(600);
+
+		// 当前小圆点加cur
+		$(this).addClass("cur").siblings().removeClass("cur");
+	})
+	</script>
+</body>
+</html>

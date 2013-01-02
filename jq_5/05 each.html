@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 使用第一种方式
+	$("li").each(function(i) {
+		console.log(i);
+	})
+
+
+
+	// // 定义数组
+	// var arr = ["a", "b", "c", "d"];
+	// // 遍历数组
+	// $.each(arr, function() {
+	// 	console.log(arguments);
+	// })
+
+
+	// 定义对象
+	var obj = {
+		a: 1,
+		b: 2,
+		c: 3
+	}
+
+
+	// 遍历对象
+	$.each(obj, function() {
+		console.log(arguments);
+	})
+
+
+
+	
+	</script>
+</body>
+</html>

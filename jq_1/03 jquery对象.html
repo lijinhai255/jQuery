@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p class="teshu">我是一个p标签</p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var p1 = document.getElementsByTagName("p")[0];
+
+	// 获取元素的内部文本
+	// console.log(p1.innerHTML);
+	// console.log($(".teshu").html());
+
+	// console.log(p1.html());
+	// console.log($(".teshu").innerHTML);
+
+	// js对象转为jquery对象
+	// var $p1 = $(p1).html();
+	// console.log($p1);
+	// $(p1).html("今天天气很好");
+
+	// jquery对象转为js对象
+	$(".teshu")[0].innerHTML = "是一个p标签";
+	</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.fen {
+			overflow: hidden;
+		}
+		h2 {
+			float: left;
+			font-size: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="fen">
+		<h2 id="fena">0</h2>
+		<h2>-</h2>
+		<h2 id="fenb">0</h2>
+	</div>
+	<div class="btns">
+		<input type="radio" id="duia" class="xuan" name="dui" checked>A队
+		<input type="radio" id="duib" class="xuan" name="dui">B队
+		<button id="btn1">加1分</button>
+		<button id="btn2">加2分</button>
+		<button id="btn3">加3分</button>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 定义一个分数数组用于保存两个队的分数
+	var scoreArr = [0, 0];
+
+	// 定义数组用于保存对象
+	var h2Arr = [$("#fena"), $("#fenb")];
+
+
+	// 定义信号量
+	var idx = 0;
+
+
+	// 添加事件
+	$(".xuan").click(function() {
+		// 获取触发事件的序号
+		idx = $(this).index();
+		// console.log(idx);
+	})
+
+
+	// 给btn1添加点击事件
+	$("#btn1").click(function() {
+		// 让对应的分数增加
+		scoreArr[idx] += 1;
+		// console.log(scoreArr);
+
+		// 体现在元素身上
+		h2Arr[idx].html(scoreArr[idx]);
+	})
+
+
+	// 给btn2添加点击事件
+	$("#btn2").click(function() {
+		// 对应信号量的分数增加
+		scoreArr[idx] += 2;
+		// 体现在元素身上
+		h2Arr[idx].html(scoreArr[idx]);
+	})
+
+	// 给btn3添加点击事件
+	$("#btn3").click(function() {
+		// 对应信号量的分数增加
+		scoreArr[idx] += 3;
+		// 体现在元素身上
+		h2Arr[idx].html(scoreArr[idx]);
+	})
+
+	</script>
+</body>
+</html>

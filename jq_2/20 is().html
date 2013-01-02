@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: lightblue;
+			top: 50px;
+			left: 50px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">回北京</button>
+	<button id="btn1">去广州</button>
+	<div class="box"></div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 当元素运动的时候， 不接受新的任务
+	$("#btn1").click(function() {
+		if ($(".box").is(":animated")) {
+			return;
+		}	
+
+		// 元素不运动的时候， 才接受新任务
+		$(".box").animate({"left": 1000}, 2000);
+	})
+
+	// 当元素不运动的时候， 才接受新的任务
+	$("#btn").click(function() {
+		if (!$(".box").is(":animated")) {
+			// 让元素运动
+			$(".box").animate({"left": 50}, 2000);
+		}
+	})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		.box {
+			position: relative;
+			width: 670px;
+			height: 221px;
+			margin: 50px auto;
+			border: 1px solid #000;
+			background-image: url(images/shuzi/pic_bg.gif);
+			overflow: hidden;
+		}
+		.box ul li {
+			position: absolute;
+			width: 70px;
+			height: 50px;
+			left: -120px;
+			top: 70px;
+		}
+		.box ul li.no1 {
+			width: 90px;
+			height: 60px;
+			left: 20px;
+			top: 60px;
+		}
+		.box ul li.no2 {
+			width: 112px;
+			height: 84px;
+			left: 121px;
+			top: 36px;
+		}
+		.box ul li.no3 {
+			width: 156px;
+			height: 100px;
+			left: 250px;
+			top: 16px;
+		}
+		.box ul li.no4 {
+			width: 112px;
+			height: 84px;
+			left: 430px;
+			top: 30px;
+		}
+		.box ul li.no5 {
+			width: 90px;
+			height: 60px;
+			left: 560px;
+			top: 60px;
+		}
+		.box ul li.no6 {
+			width: 70px;
+			height: 50px;
+			left: 710px;
+			top: 70px;
+		}
+		.btns a {
+			position: absolute;
+			width: 44px;
+			height: 44px;
+			top: 150px;
+		}
+		.btns a:first-child {
+			left: 25px;
+		}
+		.btns a:last-child {
+			right: 25px;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+		}
+		.box ul li.waiting {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li class="no0"><img src="images/shuzi/0.png" alt=""></li>
+			<li class="no1"><img src="images/shuzi/1.png" alt=""></li>
+			<li class="no2"><img src="images/shuzi/2.png" alt=""></li>
+			<li class="no3"><img src="images/shuzi/3.png" alt=""></li>
+			<li class="no4"><img src="images/shuzi/4.png" alt=""></li>
+			<li class="no5"><img src="images/shuzi/5.png" alt=""></li>
+			<li class="no6"><img src="images/shuzi/6.png" alt=""></li>
+			<li class="waiting"><img src="images/shuzi/7.png" alt=""></li>
+			<li class="waiting"><img src="images/shuzi/8.png" alt=""></li>
+			<li class="waiting"><img src="images/shuzi/9.png" alt=""></li>
+			<li class="waiting"><img src="images/shuzi/10.png" alt=""></li>
+		</ul>
+		<div class="btns">
+			<a href="#" id="leftBtn"></a>
+			<a href="#" id="rightBtn"></a>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var $leftBtn = $("#leftBtn");
+	var $rightBtn = $("#rightBtn");
+
+
+	// 定义数组用于保存每个li的状态
+	// 一般常量是用大写字母
+	// var JSONARR = [];
+	// 循环将所有li的状态保存在数组中
+	// for (var i = 0; i < 7; i++) {
+	// 	JSONARR.push({
+	// 		"width": $(".no" + i).css("width"),
+	// 		"height": $(".no" + i).css("height"),
+	// 		"left": $(".no" + i).css("left"),
+	// 		"top": $(".no" + i).css("top")
+	// 	})
+	// }
+	// console.log(JSONARR);
+
+
+	// 将散的语句合并
+	var JSONARR = (function() {
+		var temp = [];
+		for (var i = 0; i < 7; i++) {
+			temp.push({
+				"width": $(".no" + i).css("width"),
+				"height": $(".no" + i).css("height"),
+				"top": $(".no" + i).css("top"),
+				"left": $(".no" + i).css("left"),
+			})
+		}
+		return temp;
+	})();
+
+
+	// 定义数组用于保存所有元素的类名
+	// var classArr = ["no0", "no1", "no2", "no3", "no4", "no5", "no6"];
+	// var classArr = [];
+	// 循环所有的li读取类名
+	// $("li").each(function() {
+	// 	classArr.push($(this).attr("class"));
+	// })
+	// console.log(classArr);
+	
+	// 将散的语句合并
+	var classArr = (function() {
+		var arr = [];
+		$("li").each(function() {
+			arr.push($(this).attr("class"));
+		})
+		return arr;
+	})();
+	// console.log(classArr);
+
+
+	// 右按钮点击事件
+	$rightBtn.click(function() {
+		// 防流氓
+		if ($("li").is(":animated")) {
+			return;
+		}
+ 		// 让下一张图片运动到上一张图片的位置  
+		// 让.noX 运动到 .noX - 1的位置
+		for (var i = 1; i < 7; i++) {
+			$(".no" + i).animate(JSONARR[i - 1], 600);
+		}
+		
+		// 不能让.no0闯堂而过， 所以使用css书写
+		// $(".no0").css(JSONARR[6]);
+
+
+		// 更换类名
+		// 将数组中的最后一项删除， 放到数组中的第一项
+		classArr.unshift(classArr.pop());
+		// console.log(classArr);
+
+		// 体现在元素身上
+		// for (var i = 0; i < 11; i++) {
+		// 	$("li").eq(i).attr("class", classArr[i]);
+		// }
+
+		// 遍历所有的li元素
+		$("li").each(function(i) {
+			$(this).attr("class", classArr[i]);
+		})
+
+		// .no6是由 waiting display: none 变过来的，
+		// 为了防止出现bug，我们强制性的给，.no6添加行内样式
+		$(".no6").css(JSONARR[6]);
+	})
+
+
+	// 添加点击事件
+	$leftBtn.click(function() {
+		// 防流氓
+		if ($("li").is(":animated")) {
+			return;
+		}
+		// 让.noX 运动到 .noX + 1的位置
+		for (var i = 0; i < 6; i++) {
+			$(".no" + i).animate(JSONARR[i + 1], 600);
+		}
+
+		// 更换类名
+		// 删除数组第一项，放到数组最后一项
+		classArr.push(classArr.shift());
+		// console.log(classArr);
+
+		// 体现在元素身上
+		// for (var i = 0; i < 7; i++) {
+		// 	$("li").eq(i).attr("class", classArr[i]);
+		// }
+		// 循环所有的li
+		$("li").each(function(i) {
+			$(this).attr("class", classArr[i]);
+		})
+
+
+		// .no0是由 waiting display: none 变过来的，
+		// 为了防止Bug, 强制添加行内样式
+		$(".no0").css(JSONARR[0]);
+	})
+
+	// 点击的时候
+	// no0 no1 no2 no3 no4 no5 no6
+	// no1 no2 no3 no4 no5 no6 no0
+	// no2 no3 no4 no5 no6 no0 no1
+	</script>
+</body>
+</html>

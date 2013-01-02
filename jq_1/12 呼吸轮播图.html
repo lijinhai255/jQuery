@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		a {
+			text-decoration: none;
+		}
+		.box {
+			position: relative;
+			width: 900px;
+			height: 540px;
+			border: 1px solid #000;
+			margin: 50px auto;
+		}
+		.box .imgs ul {
+			list-style: none;
+		}
+		/* 呼吸轮播图布局关键: 所有图片落在一起 */
+		.box .imgs ul li {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			display: none;
+		}
+		.box .imgs ul li:first-child {
+			display: block;
+		}
+		#btns a {
+			position: absolute;
+			width: 30px;
+			height: 60px;
+			top: 50%;
+			margin-top: -30px;
+			background-color: rgba(0, 0, 0, .5);
+			line-height: 60px;
+			text-align: center;
+			color: #fff;
+			font-size: 20px;
+		}
+		#btns a:first-child {
+			left: 10px;
+		}
+		#btns a:last-child {
+			right: 10px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<div class="imgs" id="imgs">
+			<ul>
+				<li><img src="images/aoyun/0.jpg" alt=""></li>
+				<li><img src="images/aoyun/1.jpg" alt=""></li>
+				<li><img src="images/aoyun/2.jpg" alt=""></li>
+				<li><img src="images/aoyun/3.jpg" alt=""></li>
+				<li><img src="images/aoyun/4.jpg" alt=""></li>
+				<li><img src="images/aoyun/5.jpg" alt=""></li>
+				<li><img src="images/aoyun/6.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div id="btns">
+			<a href="javascript:void(0)" id="leftBtn">&lt;</a>
+			<a href="javascript:void(0)" id="rightBtn">&gt;</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var $leftBtn = $("#leftBtn");
+	var $rightBtn = $("#rightBtn");
+	var $imgs = $("#imgs ul li");
+
+	// 定义length
+	var length = $imgs.length;
+
+	// 信号量
+	var idx = 0;
+
+	// 右按钮点击事件
+	$rightBtn.click(function() {
+		// 当前图片淡出
+		$imgs.eq(idx).fadeOut(600);
+
+		// 信号量改变
+		idx++;
+		// 边界判断
+		if (idx > length - 1) {
+			// idx 归 0
+			idx = 0;
+		}
+		console.log(idx);
+
+		// 下一张图片淡入
+		$imgs.eq(idx).fadeIn(600);
+	})
+
+	// 左按钮点击事件
+	$leftBtn.click(function() {
+		// 当前图片淡出
+		$imgs.eq(idx).fadeOut(600);
+
+		// 信号量改变
+		idx--;
+		// 边界判定
+		if (idx < 0) {
+			idx = length - 1;
+		}
+		console.log(idx);
+
+		// 下一张图片淡入
+		$imgs.eq(idx).fadeIn(600);
+	})
+	</script>
+</body>
+</html>

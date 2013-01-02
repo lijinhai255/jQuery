@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul, ol {
+			list-style: none;
+		}
+		.carousel {
+			position: relative;
+			width: 560px;
+			height: 300px;
+			border: 3px solid red;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+		/*候场位置: 560*/
+		.carousel .imgs li {
+			position: absolute;
+			width: 560px;
+			height: 300px;
+			left: 560px;
+		}
+		/*登场位置*/
+		.carousel .imgs li:first-child {
+			left: 0px;
+		}
+		.btns a {
+			position: absolute;
+			width: 30px;
+			height: 60px;
+			color: #fff;
+			line-height: 60px;
+			text-align: center;
+			font-size: 20px;
+			background-color: rgba(0, 0, 0, .5);
+			text-decoration: none;
+			top: 50%;
+			margin-top: -30px;
+		}
+		.btns a:first-child {
+			left: 10px;
+		}
+		.btns a:last-child {
+			right: 10px;
+		}
+		.circles {
+			position: absolute;
+			width: 140px;
+			height: 20px;
+			left: 50%;
+			margin-left: -70px;
+			bottom: 30px;
+		}
+		.circles ol {
+			width: 150px;
+		}
+		.circles ol li {
+			float: left;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			border-radius: 20px;
+			background-color: white;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+		.circles ol li.cur {
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel">
+		<ul class="imgs" id="imgs">
+			<li><img src="images/0.jpg" alt=""></li>
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/4.jpg" alt=""></li>
+		</ul>
+		<div class="btns">
+			<a href="javascript:void(0)" id="leftBtn">&lt;</a>
+			<a href="javascript:void(0)" id="rightBtn">&gt;</a>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ol>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var $leftBtn = $("#leftBtn");
+	var $rightBtn = $("#rightBtn");
+	var $imgs = $("#imgs li");
+	var $circles = $("#circles ol li");
+	var length = $imgs.length; 
+
+	// 定义信号量
+	var idx = 0;
+
+	// 右按钮点击事件
+	$rightBtn.click(function() {
+		// 防流氓
+		if ($imgs.is(":animated")) {
+			return;
+		}
+		// 当前图片去到退场的位置
+		$imgs.eq(idx).animate({"left": -560}, 600);
+		// 信号量改变
+		idx++;
+		// 边界判断
+		if (idx > length - 1) {
+			idx = 0;
+		}
+		// 登场图片应该从候场位置进来
+		$imgs.eq(idx).css("left", 560).animate({"left": 0}, 600);
+		// 当前小圆点加cur
+		$circles.eq(idx).addClass("cur").siblings().removeClass("cur");
+	})
+
+
+	// 左按钮点击事件
+	$leftBtn.click(function() {
+		// 防流氓
+		if ($imgs.is(":animated")) {
+			return;
+		}
+		// 当前图片去到退场的位置
+		$imgs.eq(idx).animate({"left": 560}, 600);
+
+		// 信号量改变
+		idx--;
+		// 边界判断
+		if (idx < 0) {
+			idx = length - 1;
+		}
+		// 候场图片进入
+		$imgs.eq(idx).css("left", -560).animate({"left": 0}, 600);
+
+		// 当前小圆点加cur
+		$circles.eq(idx).addClass("cur").siblings().removeClass("cur");
+	})
+
+
+	// 小圆点事件
+	$circles.mouseenter(function() {
+		// 定义变量用于保存触发事件的序号
+		var i = $(this).index();
+		// console.log(i);
+
+		// 判断i与idx之间关系
+		if (i > idx) {
+			// 图片应该从右边登场了， 等价于右按钮点击事件
+			// 当前图片退场
+			$imgs.eq(idx).stop(true).animate({"left": -560}, 600);
+			// 信号量改变
+			idx = i;
+			// 下一张图片从560的位置进场
+			$imgs.eq(idx).stop(true).css("left", 560).animate({"left": 0}, 600);
+			// 小圆点加cur
+			$circles.eq(idx).addClass("cur").siblings().removeClass("cur");
+		} else if (i < idx) {
+			// 说明图片应该从左边登场了， 等价于左按钮点击事件
+			// 当前图片退场
+			$imgs.eq(idx).stop(true).animate({"left": 560}, 600);
+			// 信号量改变
+			idx = i;
+			// 下一张图片要从-560的位置登场
+			$imgs.eq(idx).stop(true).css("left", -560).animate({"left": 0}, 600);
+			// 小圆点加cur
+			$circles.eq(idx).addClass("cur").siblings().removeClass("cur");
+		}
+	})
+	</script>
+</body>
+</html>

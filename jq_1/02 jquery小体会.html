@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		p {
+			position: relative;
+			width: 100px;
+			height: 100px;
+			margin-bottom: 10px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<ul>
+			<li class="teshu"><a href="">我是一个a标签</a></li>
+			<li><a href="">我是一个a标签</a></li>
+			<li><a href="">我是一个a标签</a></li>
+			<li><a href="">我是一个a标签</a></li>
+		</ul>
+	</div>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 现在想要选中第一个a标签并改变颜色
+
+	// 使用js 来获取a标签
+	var a = document.getElementById("box").getElementsByTagName("a")[0];
+
+	// 改变颜色
+	// a.style.color = "red";
+
+
+	// 使用jquery语句
+	$("#box ul li.teshu a").css("color", "blue");
+
+
+	// 简化了元素的运动
+	// $("p").animate({"left": 500}, 1000);
+
+	// 改变p元素的背景色
+	$("p").css("backgroundColor", "orange");
+	</script>
+</body>
+</html>

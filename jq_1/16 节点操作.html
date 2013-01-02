@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 500px;
+			padding: 5px;
+			overflow: hidden;
+			border: 1px solid #000;
+			margin-bottom: 10px;
+		}
+		p {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body id="body">
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<ul>
+			<li>我是一个li元素</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 点击哪个p让哪个P元素的背景色改变
+	// $("p").click(function() {
+	// 	// console.log($(this));
+	// 	// console.log(this);
+	// 	$(this).css("backgroundColor", "red");
+	// })
+
+
+	// 点击哪个P让哪个p元素的父节点背景色改变
+	// $("p").click(function() {
+	// 	$(this).parent().css("backgroundColor", "red");
+	// })
+
+	// 点击哪个p让哪个P元素的兄弟节点背景色改变
+	// $("p").click(function() {
+	// 	$(this).siblings().css("backgroundColor", "red");
+	// })
+
+
+	// 点击哪个div让哪个div元素的兄弟节点背景色改变
+	// $("div").click(function() {
+	// 	$(this).siblings().css("backgroundColor", "red");
+	// })
+
+
+	// 点击哪个div就让哪个div的儿子节点背景色改变
+	// $("div").click(function() {
+	// 	$(this).children().css("backgroundColor", "red");
+	// })
+
+	// 点击哪个p让哪个P元素的下一个兄弟节点背景色改变
+	// $("p").click(function() {
+	// 	$(this).next().css("background-color", "red");
+	// })
+
+	// 点击哪个p让哪个P元素的后面所有兄弟节点背景色改变
+	// $("p").click(function() {
+	// 	$(this).nextAll().css("background-color", "red");
+	// })
+
+	// 点击哪个p让哪个P元素的前一个兄弟节点背景色改变
+	// $("p").click(function() {
+	// 	$(this).prev().css("background-color", "red");
+	// })
+
+
+	// 点击哪个p让哪个P元素的前面所有兄弟节点背景色改变
+	// $("p").click(function() {
+	// 	$(this).prevAll().css("background-color", "red");
+	// })
+
+
+	// 祖先节点
+	// $("p").click(function() {
+	// 	$(this).parents(".box").css("background-color", "red");
+	// })
+
+
+	// 后代节点
+	$("#body").click(function() {
+		$(this).find("li").css("background-color", "red");
+	})
+	</script>
+</body>
+</html>

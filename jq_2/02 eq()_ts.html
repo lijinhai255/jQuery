@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 500px;
+			overflow: hidden;
+			border: 1px solid #000;
+			padding: 3px;
+			margin-bottom: 10px;
+		}
+		p {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<p></p>
+		<p class="teshu"></p>
+		<p></p>
+		<p class="teshu"></p>
+	</div>
+	<div class="box" id="box1">
+		<p></p>
+		<p></p>
+		<p class="teshu"></p>
+		<p class="teshu">我想变红</p>
+	</div>
+	
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// $("p").eq(7).css("background-color", "red");
+	// $("#box1 p").eq(3).css("background-color", "blue");
+	$("p.teshu").eq(3).css("background-color", "orange");
+	</script> 
+</body>
+</html>

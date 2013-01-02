@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.fen {
+			overflow: hidden;
+		}
+		h2 {
+			float: left;
+			font-size: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="fen">
+		<h2 id="fena">0</h2>
+		<h2>-</h2>
+		<h2 id="fenb">0</h2>
+	</div>
+	<div class="btns">
+		<input type="radio" id="duia" name="dui" checked>A队
+		<input type="radio" id="duib" name="dui">B队
+		<button id="btn1">加1分</button>
+		<button id="btn2">加2分</button>
+		<button id="btn3">加3分</button>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 定义变量分别用于保存每个队的分数
+	var fenA = 0;
+	var fenB = 0;
+
+	// 添加点击事件
+	$("#btn1").click(function() {
+		// 判断哪个队被选中了
+		if ($("#duia").is(":checked")) {
+			console.log("A队被选中了");
+			// fenA++
+			fenA += 1;
+			// console.log(fenA);
+			// 体现在元素身上
+			$("#fena").html(fenA);
+		} else if ($("#duib").is(":checked")) {
+			// console.log("B队被选中了");
+			// fenB++
+			fenB++;
+			// 体现在元素身上
+			$("#fenb").html(fenB);
+		}
+	})
+
+
+
+	// 给btn2添加点击事件
+	$("#btn2").click(function() {
+		// 判断A队还是B队被选中了
+		if ($("#duia").is(":checked")) {
+			// console.log("选中A队了");
+			// fenA 每次加等于2
+			fenA += 2;
+			// 体现在元素身上
+			$("#fena").html(fenA);
+		} else {
+			// fenB 每次加2
+			fenB += 2;
+			// 体现在元素身上
+			$("#fenb").html(fenB);
+		}
+	})
+	</script>
+</body>
+</html>

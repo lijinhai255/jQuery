@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 500px;
+			overflow: hidden;
+			margin-bottom: 10px;
+			border: 1px solid #000;
+			padding: 3px;
+		}
+		p {
+			float: left;
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="box">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 让每一个div中的第一个儿子背景色改变
+	$(".box").each(function() {
+		// console.log($(this));
+		// console.log(this);
+		$(this).children().eq(0).css("background-color", "red");
+	})
+	</script>
+</body>
+</html>

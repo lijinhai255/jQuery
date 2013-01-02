@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		.carousel {
+			position: relative;
+			width: 900px;
+			height: 300px;
+			margin: 50px auto;
+			border: 1px solid red;
+			overflow: hidden;
+		}
+		.carousel ul li {
+			position: absolute;
+			width: 560px;
+			height: 300px;
+			left: 0;
+			top: 0;
+		}
+		.carousel ul li.no1 {
+			left: 180px;
+		}
+		.carousel ul li.no2 {
+			left: 360px;
+		}
+		.carousel ul li.no3 {
+			left: 540px;
+		}
+		.carousel ul li.no4 {
+			left: 720px;
+		}
+		.carousel ul li .mask {
+			position: absolute;
+			width: 560px;
+			height: 300px;
+			left: 0;
+			top: 0;
+			background-color: rgba(0, 0, 0, .5);
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<ul>
+			<li class="no0" id="no0"><div class="mask"></div><img src="images/0.jpg" alt=""></li>
+			<li class="no1" id="no1"><div class="mask"></div><img src="images/1.jpg" alt=""></li>
+			<li class="no2" id="no2"><div class="mask"></div><img src="images/2.jpg" alt=""></li>
+			<li class="no3" id="no3"><div class="mask"></div><img src="images/3.jpg" alt=""></li>
+			<li class="no4" id="no4"><div class="mask"></div><img src="images/4.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	var $carousel = $("#carousel");
+
+	// 添加鼠标移入事件
+	$("li").mouseenter(function() {
+		// 防流氓
+		$("li").stop(true);
+
+		// 定义信号量用于保存触发事件的序号
+		var idx = $(this).index();
+		// console.log(idx);
+
+		// 小于或者等于信号量的图片都是往左移动， 与85相关 
+		$("li:lt(" + (idx + 1) + ")").each(function(i) {
+			// console.log(i);
+			$(this).animate({"left": 85 * i}, 600);
+		})
+
+		// 大于信号量的图片应该是往右移动，与560相关
+		$("li:gt(" + idx + ")").each(function(i) {
+			$(this).animate({"left": 560 + 85 * (idx + i)}, 600);
+		})
+
+		// 当前蒙版淡出
+		$(this).children(".mask").stop(true).fadeOut(600);
+		// 其它蒙版恢复原状
+		$(this).siblings().children(".mask").stop(true).fadeIn(600);
+	})
+
+
+	// 鼠标离开所有图片恢复原状
+	$carousel.mouseleave(function() {
+		// 防流氓
+		$("li").stop(true);
+		// 遍历所有的Li元素
+		$("li").each(function(i) {
+			$(this).animate({"left": 180 * i}, 600);
+		})
+		// 所有蒙版恢复原状
+		$(".mask").stop(true).fadeIn(600);
+	})
+
+	</script>
+</body>
+</html>

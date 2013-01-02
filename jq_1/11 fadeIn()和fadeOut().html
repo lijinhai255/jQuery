@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: orange;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">fadeIn()</button>
+	<button id="btn1">fadeOut()</button>
+	<button id="btn2">fadeIn(2000)</button>
+	<button id="btn3">fadeOut(2000)</button>
+	<button id="btn4">fadeToggle()</button>
+	<button id="btn5">fadeToggle(2000)</button>
+	<button id="btn6">fadeTo()</button>
+	<div id="box"></div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 不传递参数 
+	$("#btn").click(function() {
+		$("#box").fadeIn();
+	})
+
+	$("#btn1").click(function() {
+		$("#box").fadeOut();
+	})
+
+	// 传递参数
+	$("#btn2").click(function() {
+		$("#box").fadeIn(2000);
+	})
+
+	$("#btn3").click(function() {
+		$("#box").fadeOut(2000);
+	})
+
+
+	// fadeToggle
+	$("#btn4").click(function() {
+		$("#box").fadeToggle();
+	})
+
+	$("#btn5").click(function() {
+		$("#box").fadeToggle(2000);
+	})
+
+
+	// fadeTo
+	$("#btn6").click(function() {
+		$("#box").fadeTo(1000, .5);
+	})
+	</script>
+</body>
+</html>

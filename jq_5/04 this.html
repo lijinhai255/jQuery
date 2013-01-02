@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">点我执行函数</button>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	$("#btn").click(function() {
+		// console.log($(this));
+		// console.log(this);
+	})
+
+
+
+	// // 定义一个函数
+	// function fun() {
+	// 	console.log(this);
+	// }
+
+	// // 执行
+	// fun();
+
+	// var obj = {
+	// 	a: fun
+	// }
+
+	// obj.a();  // fun中的this 指向的是Obj
+
+
+	// 定义一个函数
+	function fun() {
+		console.log(this);
+	}
+
+	// 使用call方法改变函数执行时候的this指向
+	fun.call($("#btn"));
+	fun.call(document);
+	fun.call(document.body);
+	
+	</script>
+</body>
+</html>

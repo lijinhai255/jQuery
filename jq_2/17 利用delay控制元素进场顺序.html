@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		p {
+			width: 100px;
+			height: 100px;
+			margin-bottom: 10px;
+			background-color: orange;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 利用delay控制元素进场顺序
+	$("p").each(function(i) {
+		// console.log(this);
+		// console.log(i);
+		$(this).delay(500 * i).show(0);
+	})
+	</script>
+</body>
+</html>

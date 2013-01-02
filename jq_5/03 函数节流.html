@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">点我执行函数</button>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 定义锁
+	var lock = true;
+	// 给btn添加点击事件
+	$("#btn").click(function() {
+		if (!lock) {
+			return;
+		}
+		// 进入函数中， 关闭锁
+		lock = false;
+		console.log("函数执行了");
+
+		// 在s3之后， 开锁
+		setTimeout(function() {
+			console.log("延时器执行了");
+			lock = true;
+		}, 3000)
+	})
+	</script>
+</body>
+</html>

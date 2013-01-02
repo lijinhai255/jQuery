@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul, ol {
+			list-style: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		.carousel {
+			position: relative;
+			width: 900px;
+			height: 540px;
+			margin: 50px auto;
+			border: 1px solid #000;
+			/*蒙版*/
+			background-color: rgba(0, 0, 0, .5);
+		}
+		.carousel .imgs ul li {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			display: none;
+		}
+		.carousel .imgs ul li:first-child {
+			display: block;
+		}
+		.carousel .btns a {
+			position: absolute;
+			width: 30px;
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+			top: 50%;
+			margin-top: -30px;
+			background-color: rgba(0, 0, 0, .5);
+			color: #fff;
+			font-size: 20px;
+			font-family: consolas;
+		}
+		.carousel .btns a:first-child {
+			left: 10px;
+		}
+		.carousel .btns a:last-child {
+			right: 10px;
+		}
+		.carousel .circles {
+			position: absolute;
+			width: 200px;
+			height: 20px;
+			left: 50%;
+			margin-left: -100px;
+			bottom: 30px;
+		}
+		.carousel .circles ol {
+			width: 210px;
+		}
+		.carousel .circles ol li {
+			float: left;
+			width: 20px;
+			height: 20px;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 20px;
+			border-radius: 20px;
+			background-color: white;
+		}
+		.carousel .circles ol li.cur {
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<div class="imgs" id="imgs">
+			<ul>
+				<li><img src="images/aoyun/0.jpg" alt=""></li>
+				<li><img src="images/aoyun/1.jpg" alt=""></li>
+				<li><img src="images/aoyun/2.jpg" alt=""></li>
+				<li><img src="images/aoyun/3.jpg" alt=""></li>
+				<li><img src="images/aoyun/4.jpg" alt=""></li>
+				<li><img src="images/aoyun/5.jpg" alt=""></li>
+				<li><img src="images/aoyun/6.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div class="btns">
+			<a href="javascript:void(0)" id="leftBtn">&lt;</a>
+			<a href="javascript:void(0)" id="rightBtn">&gt;</a>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+			</ol>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	$("#imgs ul li").eq(0).fadeOut(600);
+	</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 300px;
+			height: 300px;
+			border: 1px solid #000;
+			margin: 50px auto;
+		}
+		.box .hd {
+			height: 40px;
+		}
+		.box .hd span {
+			float: left;
+			width: 99px;
+			height: 39px;
+			border-right: 1px solid #000;
+			border-bottom: 1px solid #000;
+			text-align: center;
+			line-height: 39px;
+			background-color: #eee;
+			cursor: pointer;
+		}
+		.box .hd span:last-child {
+			border-right: none;
+		}
+		.box .hd span.cur {
+			background-color: #fff;
+			border-bottom: none;
+			font-weight: bold;
+		}
+		.box .bd {
+			height: 260px;
+		}
+		.box .bd div {
+			display: none;
+		}
+		.box .bd div.active {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<div class="hd" id="hd">
+			<span class="cur">新闻</span>
+			<span>体育</span>
+			<span>时尚</span>
+		</div>
+		<div class="bd" id="bd">
+			<div class="active">新闻</div>
+			<div>体育</div>
+			<div>时尚</div>
+		</div>
+	</div>
+	<div class="box" id="box">
+		<div class="hd" id="hd">
+			<span class="cur">新闻</span>
+			<span>体育</span>
+			<span>时尚</span>
+		</div>
+		<div class="bd" id="bd">
+			<div class="active">新闻</div>
+			<div>体育</div>
+			<div>时尚</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 当鼠标移入 hd span 让bd div 对应的元素出现
+	// $("#hd span").mouseenter(function() {
+	// 	// 当前span加cur
+	// 	// $(this).addClass("cur");
+	// 	// 排他
+	// 	// $(this).addClass("cur").siblings().removeClass("cur");
+	// 	// 让下面对应的div出现
+	// 	// $("#bd div").eq($(this).index()).addClass("active").siblings().removeClass("active");
+	// 	// 利用节点关系操作
+	// 	// $(this).parent(".hd").siblings(".bd").children("div").eq($(this).index()).addClass("active").siblings().removeClass("active");
+	// })
+
+
+	// 连续打点
+	$("#hd span").mouseenter(function() {
+		$(this).addClass("cur")
+		.siblings().removeClass("cur")
+		.parent().siblings()
+		.children()
+		.eq($(this).index())
+		.addClass("active")
+		.siblings()
+		.removeClass("active");
+	})
+	</script>
+</body>
+</html>

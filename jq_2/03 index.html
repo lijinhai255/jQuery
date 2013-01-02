@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 500px;
+			overflow: hidden;
+			border: 1px solid #000;
+			margin-bottom: 10px;
+		}
+		p {
+			float:left;
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<ul>
+			<li>li</li>
+		</ul>
+		<h3>h3</h3>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p id="p1">弹出亲兄弟的排名</p>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 点击p1弹出亲兄弟的排队
+	$("#p1").click(function() {
+		console.log($(this).index());
+	})
+	</script>
+</body>
+</html>

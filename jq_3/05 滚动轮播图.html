@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul, ol {
+			list-style: none;
+		}
+		.carousel {
+			position: relative;
+			width: 560px;
+			height: 300px;
+			border: 5px solid red;
+			margin: 50px auto;
+			/*overflow: hidden;*/
+		}
+		/*滚动轮播的布局关键: unit的宽度要足够宽，所有的图片并排在一起*/
+		.unit {
+			position: absolute;
+			width: 9999px;
+			left: 0;
+			top: 0;
+		}
+		.unit li {
+			float: left;
+			width: 560px;
+			height: 300px;
+		}
+		.carousel .btns a {
+			position: absolute;
+			width: 30px;
+			height: 60px;
+			text-align: center;
+			line-height: 60px;
+			color: #fff;
+			font-size: 20px;
+			text-decoration: none;
+			top: 50%;
+			margin-top: -30px;
+			background-color: rgba(0, 0, 0, .5);
+		}
+		.carousel .btns a:first-child {
+			left: 10px;
+		}
+		.carousel .btns a:last-child {
+			right: 10px;
+		}
+		.carousel .circles {
+			position: absolute;
+			width: 140px;
+			height: 20px;
+			left: 50%;
+			margin-left: -70px;
+			bottom: 30px;
+		}
+		.carousel .circles ol {
+			width: 150px;
+		}
+		.carousel .circles ol li {
+			float: left;
+			width: 20px;
+			height: 20px;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 20px;
+			border-radius: 20px;
+			background-color: orange;
+			cursor: pointer;
+		}
+		.carousel .circles ol li.cur {
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel">
+		<ul class="unit">
+			<li><img src="images/0.jpg" alt=""></li>
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/4.jpg" alt=""></li>
+		</ul>
+		<div class="btns">
+			<a href="javascript:void(0)" id="leftBtn">&lt;</a>
+			<a href="javascript:void(0)" id="rightBtn">&gt;</a>
+		</div>
+		<div class="circles">
+			<ol>
+				<li class="cur">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ol>
+		</div>
+	</div>
+</body>
+</html>

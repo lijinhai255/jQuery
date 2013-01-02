@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>龙禧</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul, ol {
+			list-style: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		.inner {
+			position: relative;
+			width: 1000px;
+			margin: 0 auto;
+		}
+		/*header部分*/
+		.inner .header {
+			position: absolute;
+			top: 19px;
+			height: 102px;
+			z-index: 10;
+		}
+		.inner .header .logo {
+			float: left;
+			width: 151px;
+			height: 102px;
+		}
+		.inner .header .logo a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			background-image: url(images/longxi/logo.png);
+			text-indent: -888em;
+			overflow: hidden;
+		}
+		.inner .header .nav {
+			float: left;
+			height: 91px;
+		}
+		.inner .header .nav ul li {
+			float: left;
+		}
+		.inner .header .nav ul li a {
+			display: block;
+			width: 120px;
+			height: 61px;
+			padding-top: 30px;
+			border-right: 1px solid #EAEAEA;
+			text-align: center;
+			background-color: #fff;
+		}
+		.inner .header .nav ul li:nth-child(2) a {
+			width: 114px;
+		}
+		.inner .header .nav ul li a span {
+			display: block;
+			color: #636363;
+			line-height: 23px;
+			font-size: 15px;
+		}
+		.inner .header .nav ul li a span:last-child {
+			line-height: 26px;
+			color: #C7C7C7;
+			font-size: 12px;
+		}
+		.inner .header .nav ul li a:hover {
+			background-color: #F9F9F9;
+			/*相对定位作用: 位置微调*/
+			position: relative;
+			top: -4px;
+			border-top: 4px solid #F5A400;
+		}
+		/*banner部分*/
+		.banner {
+			position: relative;
+			height: 665px;
+			overflow: hidden;
+		}
+		.banner .imgs {
+			position: absolute;
+			width: 1920px;
+			height: 665px;
+			left: 50%;
+			margin-left: -960px;
+		}
+		.banner .imgs ul li {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			display: none;
+		}
+		.banner .imgs ul li:first-child {
+			display: block;
+		}
+		.banner .inner .circles {
+			position: absolute;
+			width: 15px;
+			height: 271px;
+			left: 0;
+			top: 217px;
+			background: url(images/longxi/list_boxbg.png) repeat-y center top;
+		}
+		.banner .inner .circles ol li {
+			width: 15px;
+			height: 15px;
+			margin-bottom: 70px;
+			background-image: url(images/longxi/num_bg.png);
+			position: relative;
+		}
+		.banner .inner .circles ol li a {
+			position: absolute;
+			width: 104px;
+			height: 43px;
+			background-image: url(images/longxi/num_hover.png);
+			top: -14px;
+			right: -13px;
+			display: none;
+		}
+		.banner .inner .circles ol li:nth-child(2) a {
+			background-image: url(images/longxi/num_hover2.png);
+		}
+		.banner .inner .circles ol li:nth-child(3) a {
+			background-image: url(images/longxi/num_hover3.png);
+		}
+		.banner .inner .circles ol li:nth-child(4) a {
+			background-image: url(images/longxi/num_hover4.png);
+		}
+		.banner .inner .circles ol li.cur a {
+			display: block;
+		}
+
+	</style>
+</head>
+<body>
+	<!-- header部分 -->
+	<div class="inner">
+		<div class="header">
+			<h1 class="logo">
+				<a href="">安徽龙禧</a>
+			</h1>
+			<div class="nav">
+				<ul>
+					<li><a href=""><span>西柚媒体</span><span>See you</span></a></li>
+					<li><a href=""><span>西柚媒体</span><span>See you</span></a></li>
+					<li><a href=""><span>西柚媒体</span><span>See you</span></a></li>
+					<li><a href=""><span>西柚媒体</span><span>See you</span></a></li>
+					<li><a href=""><span>西柚媒体</span><span>See you</span></a></li>
+					<li><a href=""><span>西柚媒体</span><span>See you</span></a></li>
+					<li><a href=""><span>西柚媒体</span><span>See you</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- banner部分 -->
+	<div class="banner" id="banner">
+		<div class="imgs" id="imgs">
+			<ul>
+				<li><img src="images/longxi/1.jpg" alt=""></li>
+				<li><img src="images/longxi/2.jpg" alt=""></li>
+				<li><img src="images/longxi/3.jpg" alt=""></li>
+				<li><img src="images/longxi/4.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div class="inner">
+			<div class="circles" id="circles">
+				<ol>
+					<li class="cur"><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var $imgs = $("#imgs ul li");
+	var $circles = $("#circles ol li");
+	var $banner = $("#banner");
+	var length = $imgs.length;
+
+	// 定义信号量
+	var idx = 0;
+
+
+	// 开启定时器
+	var timer = setInterval(rightBtn, 3000);
+
+
+	// 当鼠标移入banner的时候， 停止定时器
+	$banner.mouseenter(function() {
+		clearInterval(timer);
+	})
+
+	// 当鼠标离开banner的时候， 重新开启定时器
+	$banner.mouseleave(function() {
+		// 设表先关
+		clearInterval(timer);
+
+		// 重新赋值timer
+		timer = setInterval(rightBtn, 3000);
+	})
+
+
+	// 定义函数用于右按钮事件
+	function rightBtn() {
+		// 防流氓
+		if ($imgs.is(":animated")) {
+			return;
+		}
+
+		// 当前图片消失
+		$imgs.eq(idx).fadeOut(600);
+
+		// 信号量改变
+		idx++;
+
+		// 边界判断
+		if (idx > length - 1) {
+			// idx 为 0
+			idx = 0;
+		}
+		console.log(idx);
+
+		// 下一张图片进入
+		$imgs.eq(idx).fadeIn(600);
+
+		// 当前小圆点加cur
+		$circles.eq(idx).addClass("cur").siblings().removeClass("cur");
+	}
+
+
+
+	// 小圆点事件
+	$circles.mouseenter(function() {
+		// 当前图片消失
+		$imgs.eq(idx).stop(true).fadeOut(600);
+		// 改变信号量
+		idx = $(this).index();
+		// console.log(idx);
+		// 下一张图片进入
+		$imgs.eq(idx).stop(true).fadeIn(600);
+
+		// 当前小圆点加cur
+		$(this).addClass("cur").siblings().removeClass("cur");
+	})
+	</script>
+</body>
+</html>

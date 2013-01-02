@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		.carousel {
+			position: relative;
+			width: 278px;
+			height: 78px;
+			margin: 50px auto;
+			border: 3px solid #000;
+			overflow: hidden;
+		}
+		/*unit的高度要足够高， 要能够盛放下3张图片*/
+		.unit {
+			position: absolute;
+			height: 5000px;
+			width: 300px;
+			left: 0;
+			top: 0;
+		}
+		.unit li {
+			float: left;
+			width: 78px;
+			height: 78px;
+			margin-right: 22px;
+			margin-bottom: 12px;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<ul class="unit" id="unit">
+			<li><img src="images/mingxing/0.jpg" alt=""></li>
+			<li><img src="images/mingxing/1.jpg" alt=""></li>
+			<li><img src="images/mingxing/2.jpg" alt=""></li>
+			<li><img src="images/mingxing/3.jpg" alt=""></li>
+			<li><img src="images/mingxing/4.jpg" alt=""></li>
+			<li><img src="images/mingxing/5.jpg" alt=""></li>
+			<li><img src="images/mingxing/6.jpg" alt=""></li>
+			<li><img src="images/mingxing/7.jpg" alt=""></li>
+			<li><img src="images/mingxing/8.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var $carousel = $("#carousel");
+	var $unit = $("#unit");
+	var length = $unit.children("li").length;
+	// var length = $unit.find("li").length;
+
+	// 定义信号量  对应的是每一个行 0, 1, 2
+	var idx = 0;
+
+
+	// 开启定时器
+	var timer = setInterval(rightBtn, 2600);
+
+
+	// 当鼠标移入清除定时器
+	$carousel.mouseenter(function() {
+		// 清除定时器
+		clearInterval(timer);
+	})
+
+	// 当鼠标离开重新开启定时器
+	$carousel.mouseleave(function() {
+		// 设表先关
+		clearInterval(timer);
+		// 重新赋值timer
+		timer = setInterval(rightBtn, 2600);
+	})
+
+	// 克隆前三张追加到unit的后面
+	$unit.children("li:lt(3)").clone().appendTo($unit);
+
+	// 定义函数 等价于右按钮点击事件
+	function rightBtn() {
+		// 拉动策略: 先拉动， 再瞬移
+		idx++;
+		// 拉动
+		$unit.animate({"top": -90 * idx}, 600, function() {
+			// 当猫腻图完全显示之后验证信号量
+			if (idx > length / 3 - 1) {
+				// idx 归 0
+				idx = 0;
+				// 瞬移到真图
+				$unit.css({"top": 0});
+			}
+		})
+	}
+
+	</script>
+</body>
+</html>

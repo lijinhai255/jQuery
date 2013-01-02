@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		.carousel {
+			position: relative;
+			width: 900px;
+			height: 300px;
+			margin: 50px auto;
+			border: 1px solid red;
+			overflow: hidden;
+		}
+		.carousel ul li {
+			position: absolute;
+			width: 560px;
+			height: 300px;
+			left: 0;
+			top: 0;
+		}
+		.carousel ul li.no1 {
+			left: 180px;
+		}
+		.carousel ul li.no2 {
+			left: 360px;
+		}
+		.carousel ul li.no3 {
+			left: 540px;
+		}
+		.carousel ul li.no4 {
+			left: 720px;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<ul>
+			<li class="no0" id="no0"><img src="images/0.jpg" alt=""></li>
+			<li class="no1" id="no1"><img src="images/1.jpg" alt=""></li>
+			<li class="no2" id="no2"><img src="images/2.jpg" alt=""></li>
+			<li class="no3" id="no3"><img src="images/3.jpg" alt=""></li>
+			<li class="no4" id="no4"><img src="images/4.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var $no0 = $("#no0");
+	var $no1 = $("#no1");
+	var $no2 = $("#no2");
+	var $no3 = $("#no3");
+	var $no4 = $("#no4");
+	var $carousel = $("#carousel");
+
+
+	// 添加鼠标移入事件
+	$no0.mouseenter(function() {
+		// 防流氓
+		$("li").stop(true);
+		$no1.animate({"left": 560}, 600);
+		$no2.animate({"left": 560 + 85}, 600);
+		$no3.animate({"left": 560 + 85 * 2}, 600);
+		$no4.animate({"left": 560 + 85 * 3}, 600);
+	})
+
+
+	// no1
+	$no1.mouseenter(function() {
+		// 防流氓
+		$("li").stop(true);
+		$no1.animate({"left": 85}, 600);
+		$no2.animate({"left": 560 + 85}, 600);
+		$no3.animate({"left": 560 + 85 * 2}, 600);
+		$no4.animate({"left": 560 + 85 * 3}, 600);
+	})
+
+	// no2
+	$no2.mouseenter(function() {
+		// 防流氓
+		$("li").stop(true);
+		$no1.animate({"left": 85}, 600);
+		$no2.animate({"left": 85 * 2}, 600);
+		$no3.animate({"left": 560 + 85 * 2}, 600);
+		$no4.animate({"left": 560 + 85 * 3}, 600);
+	})
+
+	// no3
+	$no3.mouseenter(function() {
+		// 防流氓
+		$("li").stop(true);
+		$no1.animate({"left": 85}, 600);
+		$no2.animate({"left": 85 * 2}, 600);
+		$no3.animate({"left": 85 * 3}, 600);
+		$no4.animate({"left": 560 + 85 * 3}, 600);
+	})
+
+
+	// no4
+	$no4.mouseenter(function() {
+		// 防流氓
+		$("li").stop(true);
+		$no1.animate({"left": 85}, 600);
+		$no2.animate({"left": 85 * 2}, 600);
+		$no3.animate({"left": 85 * 3}, 600);
+		$no4.animate({"left": 85 * 4}, 600);
+	})
+
+
+	// 鼠标离开所有图片恢复原状
+	$carousel.mouseleave(function() {
+		// 防流氓
+		$("li").stop(true);
+		$no1.animate({"left": 180}, 600);
+		$no2.animate({"left": 180 * 2}, 600);
+		$no3.animate({"left": 180 * 3}, 600);
+		$no4.animate({"left": 180 * 4}, 600);
+	})
+	</script>
+</body>
+</html>
